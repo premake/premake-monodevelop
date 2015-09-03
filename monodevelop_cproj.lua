@@ -21,7 +21,7 @@
 
 	function m.generate(prj)
 		m.header("Build")
-		
+
 		m.projectProperties(prj)
 
 		for cfg in project.eachconfig(prj) do
@@ -53,7 +53,7 @@
 
 
 --
--- Write out the project properties: what kind of binary it 
+-- Write out the project properties: what kind of binary it
 -- produces, and some global settings.
 --
 
@@ -67,7 +67,7 @@
 				m.cproj.language,
 				m.cproj.target,
 				m.cproj.version,
-				m.cproj.synchSlnVersion,
+				m.cproj.synchWksVersion,
 				m.cproj.description,
 			}
 		end
@@ -88,7 +88,7 @@
 
 
 --
--- Write out the configuration property group: what kind of binary it 
+-- Write out the configuration property group: what kind of binary it
 -- produces, and some global settings.
 --
 
@@ -171,7 +171,7 @@
 
 -- TODO: MonoDevelop really doesn't handle custom build tools very well (yet)
 --			for cfg in project.eachconfig(prj) do
---				local condition = m.condition(cfg)					
+--				local condition = m.condition(cfg)
 --				local filecfg = config.getfileconfig(cfg, file.abspath)
 --				if filecfg and filecfg.buildrule then
 --					local commands = table.concat(filecfg.buildrule.commands,'\r\n')
@@ -188,7 +188,7 @@
 		-- if any configuration of this file uses a custom build rule,
 		-- then they all must be marked as custom build
 		local hasbuildrule = false
-		for cfg in project.eachconfig(prj) do				
+		for cfg in project.eachconfig(prj) do
 			local filecfg = fileconfig.getconfig(node, cfg)
 			if filecfg and fileconfig.hasCustomBuildRule(filecfg) then
 				hasbuildrule = true
@@ -244,7 +244,7 @@
 		local deps = project.getdependencies(prj)
 		if #deps > 0 then
 			local prjpath = project.getlocation(prj)
-			
+
 			_p(1,'<ItemGroup>')
 			for _, dep in ipairs(deps) do
 				local relpath = path.getrelative(prjpath, vstudio.projectfile(dep))
@@ -294,7 +294,7 @@
 --		_p(2,'<ReleaseVersion>%s</ReleaseVersion>', '0.1')
 	end
 
-	function m.cproj.synchSlnVersion(prj)
+	function m.cproj.synchWksVersion(prj)
 		-- TODO: true = use solution version
 --		_p(2,'<SynchReleaseVersion>%s</SynchReleaseVersion>', 'false')
 	end

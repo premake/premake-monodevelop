@@ -310,8 +310,8 @@
 --
 
 	function m.cproj.debuginfo(cfg)
-		if cfg.flags.Symbols then
-			_p(2,'<DebugSymbols>%s</DebugSymbols>', iif(cfg.flags.Symbols, 'true', 'false'))
+		if cfg.symbols == p.ON then
+			_p(2,'<DebugSymbols>%s</DebugSymbols>', iif(cfg.symbols == p.ON, 'true', 'false'))
 		end
 	end
 

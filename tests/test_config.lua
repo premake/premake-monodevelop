@@ -34,7 +34,7 @@
 	end
 
 	function suite.OnProject_DebugInfo()
-		flags { "Symbols" }
+		symbols "On"
 		prepare()
 		monodevelop.cproj.debuginfo(cfg)
 		test.capture [[
